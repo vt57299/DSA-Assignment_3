@@ -1,50 +1,34 @@
-# Implement Binary search
+# Implement Binary tree
 
-class BST:
-    def __init__(self,key):
-        self.key = key
+class Node:
+    def __init__(self,data):
         self.lchild = None
+        self.key = data
         self.rchild = None
     
     def insert(self,data):
-        if self.key == None:
+        if self.key is None:
             self.key = data
-            return      
-        
-        if self.key == data:              # checking for duplicate values
             return
-        
+        if self.key == data:
+            return
+
         if self.key > data:
             if self.lchild is not None:
-                self.lchild.insert(data)
+                self.lchild.insert(data)              # Recursively caliing the insert function on left node if there's data in the left node
             else:
-                self.lchild = BST(data)
+                self.lchild = Node(data)              # If no data in lchild calling the class and storing self.key in the left node
+
         if self.key < data:
             if self.rchild is not None:
-                self.rchild.insert(data)
+                self.rchild.insert(data)              # Recursively caliing the insert function on right node if there's data in the right node 
             else:
-                self.rchild = BST(data)
+                self.rchild = Node(data)              # If no data in rchild calling the class and storing self.key in the right node
 
-    def search(self,data):
-        if self.key == data:
-            print("Node is Found!")
-            return
-        if data< self.key:
-            if self.lchild is not None:
-                self.lchild.search(data)
-            else:
-                print("Node is not present in the tree")
-        if data> self.key:
-            if self.rchild is not None:
-                self.rchild.search(data)
-            else: 
-                print("Node is not present in the tree")
-    
-    def preorder(self):
-        print(self.key)
-
-root = BST(10)
-list = [20,4,30,4,1,5,6]
-for i in list:
-    root.insert(i)
-root.search()
+root = Node(10)
+root.insert(20)
+root.insert(30)
+root.insert(5)
+print(root.key)
+print(root.rchild)
+print(root.lchild)
